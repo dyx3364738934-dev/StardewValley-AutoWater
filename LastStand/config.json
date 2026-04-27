@@ -1,0 +1,10 @@
+{
+  "StaminaDrainPerSecond": 10.0,
+  "RecoveryDuration": 10.0,
+  "CooldownDuration": 30.0,
+  "OverlayFadeInDuration": 2.0,
+  "OverlayAlphaMax": 0.6,
+  "OverlayAlphaRecovery": 0.3,
+  "EnableOverlay": true,
+  "EnableMovementBlock": true
+}

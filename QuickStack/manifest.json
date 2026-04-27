@@ -1,0 +1,10 @@
+{
+  "Name": "Quick Stack",
+  "Author": "Koko",
+  "Version": "1.0.0",
+  "Description": "一键将背包物品堆叠到附近箱子中的相同物品，类似泰拉瑞亚的 Quick Stack 功能",
+  "UniqueID": "Koko.QuickStack",
+  "EntryDll": "QuickStack.dll",
+  "MinimumApiVersion": "4.0.0",
+  "UpdateKeys": []
+}

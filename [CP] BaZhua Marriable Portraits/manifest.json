@@ -1,0 +1,11 @@
+{
+  "Name": "BaZhua Marriable Portraits",
+  "Author": "BaZhua (Nexus Mods)",
+  "Version": "1.6.13",
+  "Description": "所有可结婚对象的肖像美化包，包含季节和事件变体。覆盖 Abigail、Alex、Elliott、Emily、Haley、Harvey、Leah、Maru、Penny、Sam、Sebastian、Shane。",
+  "UniqueID": "bazhua.marriableportraits",
+  "UpdateKeys": [ "Nexus:20236" ],
+  "ContentPackFor": {
+    "UniqueID": "Pathoschild.ContentPatcher"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "Name": "Last Stand",
+  "Author": "Koko",
+  "Version": "1.0.0",
+  "Description": "濒死时触发搏命效果：锁血但持续消耗体力，回血后进入恢复期",
+  "UniqueID": "Koko.LastStand",
+  "EntryDll": "LastStand.dll",
+  "MinimumApiVersion": "4.0.0"
+}

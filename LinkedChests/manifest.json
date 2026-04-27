@@ -1,0 +1,10 @@
+{
+  "Name": "Linked Chests",
+  "Author": "Koko",
+  "Version": "1.0.0",
+  "Description": "相邻箱子自动链接，一键整理时将所有链接箱子的物品按系统规则合并排序并重新装填。同种物品合并堆叠，优先填满当前箱子，溢出的依次填入后续箱子。",
+  "UniqueID": "Koko.LinkedChests",
+  "EntryDll": "LinkedChests.dll",
+  "MinimumApiVersion": "4.0.0",
+  "UpdateKeys": []
+}

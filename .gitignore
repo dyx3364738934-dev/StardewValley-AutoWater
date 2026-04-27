@@ -1,0 +1,34 @@
+# ========== 编译产物 ==========
+# 这些东西随时可以重新编译，不需要版本管理
+bin/
+obj/
+
+# ========== 压缩包 ==========
+# zip 是打包分发的产物，源码在就随时能重新打
+*.zip
+
+# ========== IDE 和系统文件 ==========
+# 编辑器配置、系统缓存，因人而异，不应提交
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.cache
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# ========== 编译输出 ==========
+# .dll .pdb 是编译生成的二进制，不是源码
+*.dll
+*.pdb
+*.deps.json
+
+# ========== NuGet 缓存 ==========
+# 依赖锁文件，可由 dotnet restore 重新生成
+*.nuget.cache
+*.nuget.dgspec.json
+*.nuget.g.props
+*.nuget.g.targets
+project.assets.json

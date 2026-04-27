@@ -1,0 +1,11 @@
+{
+  "Name": "Abigail Seasonal Anime Sprite",
+  "Author": "NexusMods (id242576)",
+  "Version": "1.0.0",
+  "Description": "为 Abigail 提供四季换装 + 节日特殊服装的动漫风美化贴图，带可选鼻子样式。",
+  "UniqueID": "abigailseasonalanime.sprite",
+  "UpdateKeys": [ "Nexus:242576" ],
+  "ContentPackFor": {
+    "UniqueID": "Pathoschild.ContentPatcher"
+  }
+}

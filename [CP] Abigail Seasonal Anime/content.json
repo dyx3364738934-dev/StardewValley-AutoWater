@@ -1,0 +1,223 @@
+{
+  /*
+    content.json - Content Patcher 配置文件
+    =======================================
+    为 Abigail 提供四季换装 + 节日特殊服装的动漫风格美化贴图。
+    外加 AI 增强 HD 高清肖像（对话头像）。
+
+    可配置选项:
+      - NoseStyle (鼻子风格): Default(默认无鼻)/Nose(有鼻)
+
+    ── 身体贴图 (Characters/) ──
+      主贴图:
+        - Abigail_Spring.png    → 春天
+        - Abigail_Summer.png    → 夏天
+        - Abigail_Fall.png      → 秋天
+        - Abigail_Winter_Indoor.png → 冬天室内
+
+      节日贴图:
+        - Abigail_EggF.png         → 复活节 (春13)
+        - Abigail_FlowerDance.png  → 花舞节 (春24)
+        - Abigail_Luau.png         → 夏威夷宴会 (夏11)
+        - Abigail_Jellies.png      → 月光水母起舞 (夏28)
+        - Abigail_Fair.png         → 丰收节 (秋16)
+        - Abigail_SpiritsEve.png   → 万灵节 (秋27)
+
+      冬季室外:
+        - Abigail_Winter_Outdoor.png     → 冬天室外
+        - Abigail_Winter_IceF.png        → 冰雪节 (冬8)
+        - Abigail_Winter_WinterStar.png  → 冬日星盛宴 (冬25)
+
+      沙滩:
+        - Abigail_Beach.png → 沙滩
+
+      有鼻子变体:
+        - Abigail_Nose.png          → 替换所有季节/节日
+        - Abigail_Beach_Nose.png    → 沙滩
+
+  */
+
+  "Format": "2.0.0",
+
+  "ConfigSchema": {
+    "NoseStyle": {
+      "AllowValues": "Default, Nose",
+      "Default": "Default",
+      "Description": "选择 Abigail 的鼻子样式：Default=默认无鼻 anime 风，Nose=画了鼻子的版本"
+    }
+  },
+
+  "Changes": [
+    // ════════════════════════════════════════════════════════════════
+    // 「有鼻子」风格 - 简单替换模式（覆盖所有季节性变化）
+    // 当 NoseStyle = Nose 时，用一个通用贴图替换所有季节/节日
+    // ════════════════════════════════════════════════════════════════
+    {
+      "Action": "Load",
+      "Target": "Characters/Abigail",
+      "FromFile": "assets/Characters/Abigail/Abigail_Nose.png",
+      "When": {
+        "NoseStyle": "Nose"
+      }
+    },
+    {
+      "Action": "Load",
+      "Target": "Characters/Abigail_Beach",
+      "FromFile": "assets/Characters/Abigail/Abigail_Beach_Nose.png",
+      "When": {
+        "NoseStyle": "Nose"
+      }
+    },
+    // 注：冬季室外贴图没有"有鼻子"版本，Nose 模式下使用游戏默认 XNB
+
+    // ════════════════════════════════════════════════════════════════
+    // 「默认无鼻」风格 - 四季 + 节日完整变化
+    // ════════════════════════════════════════════════════════════════
+
+    // ── 沙滩贴图 ──────────────────────────────────────────────────
+    {
+      "Action": "Load",
+      "Target": "Characters/Abigail_Beach",
+      "FromFile": "assets/Characters/Abigail/Abigail_Beach.png",
+      "When": {
+        "NoseStyle": "Default"
+      }
+    },
+
+    // ── 冬季室外贴图（基础版） ────────────────────────────────────
+    {
+      "Action": "Load",
+      "Target": "Characters/Abigail_Winter",
+      "FromFile": "assets/Characters/Abigail/Abigail_Winter_Outdoor.png",
+      "When": {
+        "NoseStyle": "Default"
+      }
+    },
+
+    // ── 冬季室外 - 节日覆盖 ───────────────────────────────────────
+    {
+      "Action": "Load",
+      "Target": "Characters/Abigail_Winter",
+      "FromFile": "assets/Characters/Abigail/Abigail_Winter_IceF.png",
+      "When": {
+        "NoseStyle": "Default",
+        "Season": "Winter",
+        "Day": "8"
+      }
+    },
+    {
+      "Action": "Load",
+      "Target": "Characters/Abigail_Winter",
+      "FromFile": "assets/Characters/Abigail/Abigail_Winter_WinterStar.png",
+      "When": {
+        "NoseStyle": "Default",
+        "Season": "Winter",
+        "Day": "25"
+      }
+    },
+
+    // ── 主贴图 - 四季基础版 ──────────────────────────────────────
+    {
+      "Action": "Load",
+      "Target": "Characters/Abigail",
+      "FromFile": "assets/Characters/Abigail/Abigail_Spring.png",
+      "When": {
+        "NoseStyle": "Default",
+        "Season": "Spring"
+      }
+    },
+    {
+      "Action": "Load",
+      "Target": "Characters/Abigail",
+      "FromFile": "assets/Characters/Abigail/Abigail_Summer.png",
+      "When": {
+        "NoseStyle": "Default",
+        "Season": "Summer"
+      }
+    },
+    {
+      "Action": "Load",
+      "Target": "Characters/Abigail",
+      "FromFile": "assets/Characters/Abigail/Abigail_Fall.png",
+      "When": {
+        "NoseStyle": "Default",
+        "Season": "Fall"
+      }
+    },
+    {
+      "Action": "Load",
+      "Target": "Characters/Abigail",
+      "FromFile": "assets/Characters/Abigail/Abigail_Winter_Indoor.png",
+      "When": {
+        "NoseStyle": "Default",
+        "Season": "Winter"
+      }
+    },
+
+    // ── 主贴图 - 春季节日覆盖 ────────────────────────────────────
+    {
+      "Action": "Load",
+      "Target": "Characters/Abigail",
+      "FromFile": "assets/Characters/Abigail/Abigail_EggF.png",
+      "When": {
+        "NoseStyle": "Default",
+        "Season": "Spring",
+        "Day": "13"
+      }
+    },
+    {
+      "Action": "Load",
+      "Target": "Characters/Abigail",
+      "FromFile": "assets/Characters/Abigail/Abigail_FlowerDance.png",
+      "When": {
+        "NoseStyle": "Default",
+        "Season": "Spring",
+        "Day": "24"
+      }
+    },
+
+    // ── 主贴图 - 夏季节日覆盖 ────────────────────────────────────
+    {
+      "Action": "Load",
+      "Target": "Characters/Abigail",
+      "FromFile": "assets/Characters/Abigail/Abigail_Luau.png",
+      "When": {
+        "NoseStyle": "Default",
+        "Season": "Summer",
+        "Day": "11"
+      }
+    },
+    {
+      "Action": "Load",
+      "Target": "Characters/Abigail",
+      "FromFile": "assets/Characters/Abigail/Abigail_Jellies.png",
+      "When": {
+        "NoseStyle": "Default",
+        "Season": "Summer",
+        "Day": "28"
+      }
+    },
+
+    // ── 主贴图 - 秋季节日覆盖 ────────────────────────────────────
+    {
+      "Action": "Load",
+      "Target": "Characters/Abigail",
+      "FromFile": "assets/Characters/Abigail/Abigail_Fair.png",
+      "When": {
+        "NoseStyle": "Default",
+        "Season": "Fall",
+        "Day": "16"
+      }
+    },
+    {
+      "Action": "Load",
+      "Target": "Characters/Abigail",
+      "FromFile": "assets/Characters/Abigail/Abigail_SpiritsEve.png",
+      "When": {
+        "NoseStyle": "Default",
+        "Season": "Fall",
+        "Day": "27"
+      }
+    }
+  ]
+}

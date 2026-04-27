@@ -1,0 +1,92 @@
+{
+  "Format": "2.0.0",
+
+  "Changes": [
+    // ════════════════════════════════════════════════
+    // Abigail
+    // ════════════════════════════════════════════════
+    { "Action": "Load", "Target": "Portraits/Abigail",       "FromFile": "assets/Portraits/Abigail.png" },
+    { "Action": "Load", "Target": "Portraits/Abigail_Beach", "FromFile": "assets/Portraits/Abigail_Beach.png" },
+    { "Action": "Load", "Target": "Portraits/Abigail_Winter", "FromFile": "assets/Portraits/Abigail_Winter.png" },
+
+    // ════════════════════════════════════════════════
+    // Alex
+    // ════════════════════════════════════════════════
+    { "Action": "Load", "Target": "Portraits/Alex",       "FromFile": "assets/Portraits/Alex.png" },
+    { "Action": "Load", "Target": "Portraits/Alex_Beach", "FromFile": "assets/Portraits/Alex_Beach.png" },
+    { "Action": "Load", "Target": "Portraits/Alex_Winter", "FromFile": "assets/Portraits/Alex_Winter.png" },
+
+    // ════════════════════════════════════════════════
+    // Elliott
+    // ════════════════════════════════════════════════
+    { "Action": "Load", "Target": "Portraits/Elliott",       "FromFile": "assets/Portraits/Elliott.png" },
+    { "Action": "Load", "Target": "Portraits/Elliott_Beach", "FromFile": "assets/Portraits/Elliott_Beach.png" },
+    { "Action": "Load", "Target": "Portraits/Elliott_Winter", "FromFile": "assets/Portraits/Elliott_Winter.png" },
+
+    // ════════════════════════════════════════════════
+    // Emily
+    // ════════════════════════════════════════════════
+    { "Action": "Load", "Target": "Portraits/Emily",       "FromFile": "assets/Portraits/Emily.png" },
+    { "Action": "Load", "Target": "Portraits/Emily_Beach", "FromFile": "assets/Portraits/Emily_Beach.png" },
+    { "Action": "Load", "Target": "Portraits/Emily_Winter", "FromFile": "assets/Portraits/Emily_Winter.png" },
+
+    // ════════════════════════════════════════════════
+    // Haley
+    // ════════════════════════════════════════════════
+    { "Action": "Load", "Target": "Portraits/Haley",       "FromFile": "assets/Portraits/Haley.png" },
+    { "Action": "Load", "Target": "Portraits/Haley_Beach", "FromFile": "assets/Portraits/Haley_Beach.png" },
+    { "Action": "Load", "Target": "Portraits/Haley_Winter", "FromFile": "assets/Portraits/Haley_Winter.png" },
+
+    // ════════════════════════════════════════════════
+    // Harvey
+    // ════════════════════════════════════════════════
+    { "Action": "Load", "Target": "Portraits/Harvey",       "FromFile": "assets/Portraits/Harvey.png" },
+    { "Action": "Load", "Target": "Portraits/Harvey_Beach", "FromFile": "assets/Portraits/Harvey_Beach.png" },
+    { "Action": "Load", "Target": "Portraits/Harvey_Winter", "FromFile": "assets/Portraits/Harvey_Winter.png" },
+
+    // ════════════════════════════════════════════════
+    // Leah
+    // ════════════════════════════════════════════════
+    { "Action": "Load", "Target": "Portraits/Leah",       "FromFile": "assets/Portraits/Leah.png" },
+    { "Action": "Load", "Target": "Portraits/Leah_Beach", "FromFile": "assets/Portraits/Leah_Beach.png" },
+    { "Action": "Load", "Target": "Portraits/Leah_Winter", "FromFile": "assets/Portraits/Leah_Winter.png" },
+
+    // ════════════════════════════════════════════════
+    // Maru
+    // ════════════════════════════════════════════════
+    { "Action": "Load", "Target": "Portraits/Maru",          "FromFile": "assets/Portraits/Maru.png" },
+    { "Action": "Load", "Target": "Portraits/Maru_Beach",    "FromFile": "assets/Portraits/Maru_Beach.png" },
+    { "Action": "Load", "Target": "Portraits/Maru_Hospital", "FromFile": "assets/Portraits/Maru_Hospital.png" },
+    { "Action": "Load", "Target": "Portraits/Maru_Winter",   "FromFile": "assets/Portraits/Maru_Winter.png" },
+
+    // ════════════════════════════════════════════════
+    // Penny
+    // ════════════════════════════════════════════════
+    { "Action": "Load", "Target": "Portraits/Penny",       "FromFile": "assets/Portraits/Penny.png" },
+    { "Action": "Load", "Target": "Portraits/Penny_Beach", "FromFile": "assets/Portraits/Penny_Beach.png" },
+    { "Action": "Load", "Target": "Portraits/Penny_Winter", "FromFile": "assets/Portraits/Penny_Winter.png" },
+
+    // ════════════════════════════════════════════════
+    // Sam
+    // ════════════════════════════════════════════════
+    { "Action": "Load", "Target": "Portraits/Sam",          "FromFile": "assets/Portraits/Sam.png" },
+    { "Action": "Load", "Target": "Portraits/Sam_Beach",    "FromFile": "assets/Portraits/Sam_Beach.png" },
+    { "Action": "Load", "Target": "Portraits/Sam_JojaMart", "FromFile": "assets/Portraits/Sam_JojaMart.png" },
+    { "Action": "Load", "Target": "Portraits/Sam_Winter",   "FromFile": "assets/Portraits/Sam_Winter.png" },
+
+    // ════════════════════════════════════════════════
+    // Sebastian
+    // ════════════════════════════════════════════════
+    { "Action": "Load", "Target": "Portraits/Sebastian",       "FromFile": "assets/Portraits/Sebastian.png" },
+    { "Action": "Load", "Target": "Portraits/Sebastian_Beach", "FromFile": "assets/Portraits/Sebastian_Beach.png" },
+    { "Action": "Load", "Target": "Portraits/Sebastian_Winter", "FromFile": "assets/Portraits/Sebastian_Winter.png" },
+
+    // ════════════════════════════════════════════════
+    // Shane
+    // ════════════════════════════════════════════════
+    { "Action": "Load", "Target": "Portraits/Shane",          "FromFile": "assets/Portraits/Shane.png" },
+    { "Action": "Load", "Target": "Portraits/Shane_Beach",    "FromFile": "assets/Portraits/Shane_Beach.png" },
+    { "Action": "Load", "Target": "Portraits/Shane_JojaMart", "FromFile": "assets/Portraits/Shane_JojaMart.png" },
+    { "Action": "Load", "Target": "Portraits/Shane_Winter",   "FromFile": "assets/Portraits/Shane_Winter.png" }
+  ]
+}
