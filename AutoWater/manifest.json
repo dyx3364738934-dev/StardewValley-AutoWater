@@ -1,8 +1,8 @@
 {
   "Name": "Auto Water",
   "Author": "Koko",
-  "Version": "1.0.0",
-  "Description": "每天早上自动浇灌全农场所有作物，无需手动浇水",
+  "Version": "1.1.0",
+  "Description": "每天早上自动浇灌全农场所有作物。吸水触发浇水。通知带金水壶图标。",
   "UniqueID": "Koko.AutoWater",
   "EntryDll": "AutoWater.dll",
   "MinimumApiVersion": "4.0.0"
