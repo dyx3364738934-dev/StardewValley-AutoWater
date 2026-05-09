@@ -17,9 +17,12 @@ namespace LinkedChests
             if (!ModEntry.Instance.Config.EnableLinkedSort)
                 return;
 
-            var linked = ChestLinker.FindLinkedChests(chest, Game1.player.currentLocation);
-            if (linked.Count > 1)
-                ChestLinker.DoLinkedSort(linked);
+            var location = Game1.player?.currentLocation;
+            if (location == null) return;
+
+            var linkedWithTiles = ChestLinker.FindLinkedChestsWithTiles(chest, location);
+            if (linkedWithTiles.Count > 1)
+                ChestLinker.DoLinkedSort(linkedWithTiles);
         }
     }
 
@@ -27,6 +30,7 @@ namespace LinkedChests
     {
         public bool EnableLinkedSort { get; set; } = true;
         public bool ShowNotification { get; set; } = true;
+        public bool EnableWorkbenchRangeBoost { get; set; } = true;
     }
 
     public class ModEntry : Mod
@@ -45,7 +49,10 @@ namespace LinkedChests
             // 手动打补丁（避免 PatchAll 因参数类型不匹配而静默失败）
             HarmonyPatches.Apply(harmony);
 
-            Monitor.Log("Linked Chests 已加载！相邻箱子一键联排功能已激活。", LogLevel.Info);
+            string features = "相邻箱子联排";
+            if (Config.EnableWorkbenchRangeBoost)
+                features += " + 工作台全场景覆盖";
+            Monitor.Log($"Linked Chests 已加载！{features}。", LogLevel.Info);
         }
 
         public override object? GetApi()

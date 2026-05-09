@@ -20,27 +20,35 @@ namespace LinkedChests
             new Vector2(-1,  1), new Vector2(0,  1), new Vector2(1,  1),
         };
 
-        /// <summary>获取箱子标准槽位数（运行时类型检测，兼容不同SDV版本）</summary>
+        /// <summary>获取箱子标准槽位数（BigChest: 70, 普通箱: 36）</summary>
         private static int GetChestCapacity(Chest chest)
         {
-            // BigChest 类在不同SDV版本可能不存在/不公开，用运行时类型名检测
-            string typeName = chest.GetType().Name;
-            if (typeName == "BigChest" || typeName.Contains("Big"))
-                return 70;
-            return 36;
+            return chest.GetType().Name == "BigChest" ? 70 : 36;
         }
 
         /// <summary>
-        /// BFS 扫描 8 方向相邻的所有箱子，返回链接组
+        /// 构建场景 tile → Chest 映射字典
         /// </summary>
-        public static List<Chest> FindLinkedChests(Chest sourceChest, GameLocation location)
+        private static Dictionary<Vector2, Chest> BuildTileChestMap(GameLocation location)
         {
-            var tileToChest = new Dictionary<Vector2, Chest>();
+            var map = new Dictionary<Vector2, Chest>();
             foreach (var pair in location.objects.Pairs)
             {
                 if (pair.Value is Chest chest)
-                    tileToChest[pair.Key] = chest;
+                    map[pair.Key] = chest;
             }
+            return map;
+        }
+
+        /// <summary>
+        /// BFS 扫描 8 方向相邻的所有箱子，返回链接组（含 tile 位置）
+        /// </summary>
+        public static List<(Chest chest, Vector2 tile)> FindLinkedChestsWithTiles(Chest sourceChest, GameLocation location)
+        {
+            if (sourceChest == null || location == null)
+                return new List<(Chest, Vector2)>();
+
+            var tileToChest = BuildTileChestMap(location);
 
             Vector2? startTile = null;
             foreach (var kv in tileToChest)
@@ -49,11 +57,11 @@ namespace LinkedChests
             }
 
             if (startTile == null)
-                return new List<Chest> { sourceChest };
+                return new List<(Chest, Vector2)> { (sourceChest, Vector2.Zero) };
 
             var visited = new HashSet<Vector2>();
             var queue = new Queue<Vector2>();
-            var result = new List<Chest>();
+            var result = new List<(Chest, Vector2)>();
 
             queue.Enqueue(startTile.Value);
 
@@ -63,7 +71,7 @@ namespace LinkedChests
                 if (!visited.Add(tile)) continue;
                 if (!tileToChest.TryGetValue(tile, out var chest)) continue;
 
-                result.Add(chest);
+                result.Add((chest, tile));
                 foreach (var offset in AdjacentOffsets)
                 {
                     var neighbor = tile + offset;
@@ -77,21 +85,21 @@ namespace LinkedChests
 
         /// <summary>
         /// 执行链接整理：收集 → 合并堆叠 → 排序 → 重分配
-        /// （箱子按左上→右下网格顺序装填，不再依赖当前打开的是哪个）
+        /// （接受预置 tile 位置，避免重复遍历场景物体）
         /// </summary>
-        public static void DoLinkedSort(List<Chest> chests)
+        public static void DoLinkedSort(List<(Chest chest, Vector2 tile)> chestsWithTiles)
         {
-            if (chests.Count <= 1) return;
+            if (chestsWithTiles == null || chestsWithTiles.Count <= 1) return;
 
             // ════════════════════════════════════════════
             // 第一步：收集所有物品
             // ════════════════════════════════════════════
             var allItems = new List<Item>();
-            int chestCount = chests.Count;
+            int chestCount = chestsWithTiles.Count;
 
             for (int c = 0; c < chestCount; c++)
             {
-                var chest = chests[c];
+                var chest = chestsWithTiles[c].chest;
                 for (int i = 0; i < chest.Items.Count; i++)
                 {
                     var item = chest.Items[i];
@@ -114,28 +122,23 @@ namespace LinkedChests
             SortItems(merged);
 
             // ════════════════════════════════════════════
-            // 第四步：重分配 —— 按格子位置排序：左上→右上→左下→右下
+            // 第四步：重分配 —— 按格子位置排序（使用预置 tile，不重复遍历）
             // ════════════════════════════════════════════
-            var location = Game1.player.currentLocation;
-
-            // 找到每个箱子的 tile 位置
-            var chestTiles = new List<(Chest chest, Vector2 tile, int capacity)>();
-            foreach (var chest in chests)
-            {
-                Vector2? tile = FindChestTile(chest, location);
-                chestTiles.Add((chest, tile ?? Vector2.Zero, GetChestCapacity(chest)));
-            }
+            // 复制一份避免修改原始列表
+            var sortedList = chestsWithTiles
+                .Select(t => (chest: t.chest, tile: t.tile, capacity: GetChestCapacity(t.chest)))
+                .ToList();
 
             // 按 Y (行) 排序，再按 X (列) 排序 → 左上恒定为 #1
-            chestTiles.Sort((a, b) =>
+            sortedList.Sort((a, b) =>
             {
                 int yCmp = a.tile.Y.CompareTo(b.tile.Y);
                 if (yCmp != 0) return yCmp;
                 return a.tile.X.CompareTo(b.tile.X);
             });
 
-            var orderedChests = chestTiles.Select(t => t.chest).ToList();
-            var orderedCaps = chestTiles.Select(t => t.capacity).ToList();
+            var orderedChests = sortedList.Select(t => t.chest).ToList();
+            var orderedCaps = sortedList.Select(t => t.capacity).ToList();
 
             DistributeItems(merged, orderedChests, orderedCaps);
         }
@@ -229,17 +232,5 @@ namespace LinkedChests
             }
         }
 
-        /// <summary>
-        /// 在场景中找到指定箱子的 tile 位置
-        /// </summary>
-        private static Vector2? FindChestTile(Chest target, GameLocation location)
-        {
-            foreach (var pair in location.objects.Pairs)
-            {
-                if (pair.Value == target)
-                    return pair.Key;
-            }
-            return null;
-        }
     }
 }
